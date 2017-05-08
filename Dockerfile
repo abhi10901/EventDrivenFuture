@@ -43,8 +43,8 @@ EXPOSE 27017
 WORKDIR /data
   
 # Set usr/bin/mongod as the dockerized entry-point application
-#ENTRYPOINT ["/usr/bin/mongod"]
-ENTRYPOINT ["bash"]
+ENTRYPOINT ["/usr/bin/mongod"]
+#ENTRYPOINT ["bash"]
 
 # Define default command.
 #CMD ["bash"]
