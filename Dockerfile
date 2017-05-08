@@ -5,6 +5,9 @@
 # Format: FROM	repository[:version]
 FROM	ubuntu:16.04
 
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
+RUN apt-get update && apt-get install -y --no-install-recommends software-properties-common
+
 # Install Java.
 RUN \
   echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \
@@ -19,8 +22,6 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 
 # Installation:
 # Import MongoDB public GPG key AND create a MongoDB list file
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
-RUN apt-get update && apt-get install -y --no-install-recommends software-properties-common
 # To get ubuntu version: $(cat /etc/lsb-release | grep DISTRIB_CODENAME | cut -d= -f2)
 RUN echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-3.2.list
 
